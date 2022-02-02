@@ -2,21 +2,21 @@ import React from 'react';
 import s from './Counter.module.css'
 
 type CounterPropsType = {
-    counter: number
+    value: number
     maxCount: number
 }
 
 const Counter: React.FC<CounterPropsType> = (
     {
-        counter,
+        value,
         maxCount,
         ...restProps
     }) => {
 
-    const finalCounterClass = `${counter === maxCount && s.maxCounter} ${s.counterWrapper}`
+    const finalCounterClass = `${value === maxCount && s.maxCounter} ${s.counterWrapper}`
     return (
         <div className={finalCounterClass}>
-            {counter}
+            {value}
         </div>
     )
 }
