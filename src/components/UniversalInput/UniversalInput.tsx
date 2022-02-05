@@ -32,7 +32,7 @@ const UniversalInput: React.FC<UniversalInputPropsType> = (
     return (
         <div className={s.valueWrapper}>
             {children}
-            <input type="number" onChange={onChangeHandler} value={value}/>
+            <input type="number" onChange={onChangeHandler} value={value} className={s.input}/>
         </div>
     );
 };
