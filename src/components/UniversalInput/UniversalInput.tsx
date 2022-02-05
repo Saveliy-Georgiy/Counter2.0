@@ -3,13 +3,14 @@ import s from './UniversalInput.module.css'
 /*import {TextValueType} from "../../App";*/
 
 type UniversalInputPropsType = {
-    minValue: number
-    maxValue: number
+   /* minValue: number
+    maxValue: number*/
     setValueOrText: (valueOrText: boolean) => void
     onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
     value: number
     maxStyle?: string
     minStyle?: string
+    setDisableButtonSet: (disable: boolean) => void
 /*    setTextValue: (text: TextValueType) => void*/
 }
 
@@ -22,6 +23,7 @@ const UniversalInput: React.FC<UniversalInputPropsType> = (
         value,
         maxStyle,
         minStyle,
+        setDisableButtonSet,
         /*setTextValue,*/
         children,
     }) => {
@@ -31,10 +33,10 @@ const UniversalInput: React.FC<UniversalInputPropsType> = (
         //походу из-за асинхрона не срабатывает вовремя, буду искать другой метод
         onChange(e)
         setValueOrText(false)
+        setDisableButtonSet(false)
     }
 
-   /* const finalInputClass = `${s.input} ${minValue < 0 && minStyles} ${minValue >= maxValue && (minStyles && maxValue)} ${minValue >= 0 && minValue < maxValue && s.correctValues}`*/
-     const finalInputClass =  `${maxStyle} ${minStyle} ${s.input}`
+     const finalInputClass = `${maxStyle} ${minStyle} ${s.input}`
 
     return (
         <div className={s.valueWrapper}>
