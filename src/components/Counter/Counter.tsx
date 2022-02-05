@@ -26,7 +26,7 @@ const Counter: React.FC<CounterPropsType> = (
     }) => {
 
 
-    const finalTextValue = (minValue < 0 || minValue === maxValue) ? incorrectValue : correctValue
+    const finalTextValue = (minValue < 0 || minValue >= maxValue) ? incorrectValue : correctValue
 
     const finalCounterClass =
         `${value === maxValue && valueOrText && s.maxCounter} 
