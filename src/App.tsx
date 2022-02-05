@@ -51,6 +51,10 @@ const App = () => {
         localStorage.setItem('counterValue', JSON.stringify(value))
     }, [value])
 
+    const minStyle = `${(minValue < 0 || minValue >= maxValue) ? "minRed": "correctValue"}`
+
+    const maxStyle = `${minValue >= maxValue || maxValue <= 0 ? "maxRed" : "correctValue"}`
+
     return (
         <div className="blockForCounter">
             <div className="counterWrapper">
@@ -61,6 +65,7 @@ const App = () => {
                         setValueOrText={setValueOrText}
                         maxValue={maxValue}
                         minValue={minValue}
+                        maxStyle={maxStyle}
                         /*setTextValue={setTextValue}*/>max value:</UniversalInput>
                     <UniversalInput
                         onChange={changeMinValue}
@@ -68,6 +73,7 @@ const App = () => {
                         setValueOrText={setValueOrText}
                         minValue={minValue}
                         maxValue={maxValue}
+                        minStyle={minStyle}
                         /*setTextValue={setTextValue}*/>start value:</UniversalInput>
                 </div>
                 <div className="buttonsWrapper">

@@ -8,6 +8,8 @@ type UniversalInputPropsType = {
     setValueOrText: (valueOrText: boolean) => void
     onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
     value: number
+    maxStyle?: string
+    minStyle?: string
 /*    setTextValue: (text: TextValueType) => void*/
 }
 
@@ -18,6 +20,8 @@ const UniversalInput: React.FC<UniversalInputPropsType> = (
         setValueOrText,
         onChange,
         value,
+        maxStyle,
+        minStyle,
         /*setTextValue,*/
         children,
     }) => {
@@ -29,10 +33,13 @@ const UniversalInput: React.FC<UniversalInputPropsType> = (
         setValueOrText(false)
     }
 
+   /* const finalInputClass = `${s.input} ${minValue < 0 && minStyles} ${minValue >= maxValue && (minStyles && maxValue)} ${minValue >= 0 && minValue < maxValue && s.correctValues}`*/
+     const finalInputClass =  `${maxStyle} ${minStyle} ${s.input}`
+
     return (
         <div className={s.valueWrapper}>
             {children}
-            <input type="number" onChange={onChangeHandler} value={value} className={s.input}/>
+            <input type="number" onChange={onChangeHandler} value={value} className={finalInputClass}/>
         </div>
     );
 };

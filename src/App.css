@@ -45,3 +45,15 @@
     justify-content: center;
     font-size: 24px;
 }
+
+.minRed {
+    border: 3px solid red;
+}
+
+.maxRed {
+    border: 3px solid red;
+}
+
+.correctValue{
+    border: 3px solid darkblue;
+}
