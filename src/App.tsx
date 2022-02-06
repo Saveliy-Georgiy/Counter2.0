@@ -14,6 +14,10 @@ const App = () => {
 
     const [maxValue, setMaxValue] = useState<number>(7)
 
+    const [minValueForEffect, setMinValueForEffect] = useState<number>(0)
+
+    const [maxValueForEffect, setMaxValueForEffect] = useState<number>(7)
+
     /*const [textValue, setTextValue] = useState<TextValueType>()*/
 
     const incorrectValue = "Incorrect value!" //стоило ли их делать глобальными?
@@ -30,6 +34,8 @@ const App = () => {
         setValueOrText(true)
         setValue(minValue)
         setDisableButtonSet(true)
+        setMinValueForEffect(minValue)
+        setMaxValueForEffect(maxValue)
     }
 
     const resetCounter = () => setValue(minValue)
@@ -53,6 +59,30 @@ const App = () => {
     useEffect(() => {
         localStorage.setItem('counterValue', JSON.stringify(value))
     }, [value])
+
+    useEffect(() => {
+        const valueAsString = localStorage.getItem('minValue')
+        if(valueAsString) {
+            setMinValue(JSON.parse(valueAsString))
+            setMinValueForEffect(JSON.parse(valueAsString))
+        }
+    }, [])
+
+    useEffect(() => {
+        localStorage.setItem('minValue', JSON.stringify(minValueForEffect))
+    }, [minValueForEffect])
+
+    useEffect(() => {
+        const valueAsString = localStorage.getItem('maxValue')
+        if(valueAsString) {
+            setMaxValue(JSON.parse(valueAsString))
+            setMaxValueForEffect(JSON.parse(valueAsString)) //получаем в переменную для эффектов значения тоже, чтобы они не обнулялись
+        }
+    }, [])
+
+    useEffect(() => {
+        localStorage.setItem('maxValue', JSON.stringify(maxValueForEffect))
+    }, [maxValueForEffect])
 
     const minStyle = (minValue < 0 || minValue >= maxValue) ? "minRed": "correctValue"
 
