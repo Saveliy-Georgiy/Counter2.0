@@ -13,7 +13,7 @@ type UniversalInputPropsType = {
     setDisableButtonSet: (disable: boolean) => void
 /*    setTextValue: (text: TextValueType) => void*/
 }
-
+ //сделать инпут универсальным!!!!!!
 const UniversalInput: React.FC<UniversalInputPropsType> = (
     {
         /*minValue,

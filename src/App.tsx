@@ -9,24 +9,16 @@ import UniversalInput from "./components/UniversalInput/UniversalInput";
 const App = () => {
 
     const [value, setValue] = useState<number>(0)
-
     const [minValue, setMinValue] = useState<number>(0)
-
     const [maxValue, setMaxValue] = useState<number>(7)
-
     const [minValueForEffect, setMinValueForEffect] = useState<number>(0)
-
     const [maxValueForEffect, setMaxValueForEffect] = useState<number>(7)
-
+    const [valueOrText, setValueOrText] = useState<boolean>(true)
+    const [disableButtonSet, setDisableButtonSet] = useState<boolean>(true)
     /*const [textValue, setTextValue] = useState<TextValueType>()*/
 
     const incorrectValue = "Incorrect value!" //стоило ли их делать глобальными?
-
     const correctValue = "Enter values and press 'set'" //стоило ли их делать глобальными?
-
-    const [valueOrText, setValueOrText] = useState<boolean>(true)
-
-    const [disableButtonSet, setDisableButtonSet] = useState<boolean>(true)
 
     const changeCounter = () => value < maxValue && setValue(value + 1)
 
@@ -49,10 +41,23 @@ const App = () => {
     }
 
     useEffect(() => {
-        let valueAsString = localStorage.getItem('counterValue')
-        if (valueAsString) {
-            let newValue = JSON.parse(valueAsString)
+        const counterValue = localStorage.getItem('counterValue')
+        const minValue = localStorage.getItem('minValue')
+        const maxValue = localStorage.getItem('maxValue')
+
+        if (maxValue) {
+            setMaxValue(JSON.parse(maxValue))
+            setMaxValueForEffect(JSON.parse(maxValue)) //получаем в переменную для эффектов значения тоже, чтобы они не обнулялись
+        }
+
+        if (counterValue) {
+            let newValue = JSON.parse(counterValue)
             setValue(newValue)
+        }
+
+        if(minValue) {
+            setMinValue(JSON.parse(minValue))
+            setMinValueForEffect(JSON.parse(minValue))
         }
     }, [])
 
@@ -60,25 +65,11 @@ const App = () => {
         localStorage.setItem('counterValue', JSON.stringify(value))
     }, [value])
 
-    useEffect(() => {
-        const valueAsString = localStorage.getItem('minValue')
-        if(valueAsString) {
-            setMinValue(JSON.parse(valueAsString))
-            setMinValueForEffect(JSON.parse(valueAsString))
-        }
-    }, [])
 
     useEffect(() => {
         localStorage.setItem('minValue', JSON.stringify(minValueForEffect))
     }, [minValueForEffect])
 
-    useEffect(() => {
-        const valueAsString = localStorage.getItem('maxValue')
-        if(valueAsString) {
-            setMaxValue(JSON.parse(valueAsString))
-            setMaxValueForEffect(JSON.parse(valueAsString)) //получаем в переменную для эффектов значения тоже, чтобы они не обнулялись
-        }
-    }, [])
 
     useEffect(() => {
         localStorage.setItem('maxValue', JSON.stringify(maxValueForEffect))
