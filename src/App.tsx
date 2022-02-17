@@ -4,8 +4,6 @@ import Counter from './components/Counter/Counter';
 import UniversalButton from './components/UniversalButton/UniversalButton';
 import UniversalInput from "./components/UniversalInput/UniversalInput";
 
-/*export type TextValueType = "Enter value and press 'set'" | "Incorrect value!"*/
-
 const App = () => {
 
     const [value, setValue] = useState<number>(0)
@@ -81,8 +79,6 @@ const App = () => {
     const minStyle = (minValue < 0 || minValue >= maxValue) ? "minRed" : "correctValue"
     const maxStyle = minValue >= maxValue || maxValue <= 0 ? "maxRed" : "correctValue"
 
-
-    /*const disableButtonSet = (!(minValue >= 0 && maxValue > minValue)) //но этот вариант не проверяет на вызов функции setCounter*/
     const finalDisableButtonSet = !disableButtonSet ? (!(minValue >= 0 && maxValue > minValue)) : true
     //проверяет, если кнопка не задизейблена, то проверяет логику по числам, а если задизейблена, превращает первое выражение в false и возвращает true. Делал такое для того, чтобы не передавать значения макс и мин в инпуты, где уже потом та же самая проверка будет проводиться в функции, при изменение макс мин значений
     return (
@@ -93,20 +89,14 @@ const App = () => {
                         onChange={changeMaxValue}
                         value={maxValue}
                         setValueOrText={setValueOrText}
-                        /*maxValue={maxValue}
-                        minValue={minValue}*/
                         style={maxStyle}
-                        setDisableButtonSet={setDisableButtonSet}
-                        /*setTextValue={setTextValue}*/>max value:</UniversalInput>
+                        setDisableButtonSet={setDisableButtonSet}>max value:</UniversalInput>
                     <UniversalInput
                         onChange={changeMinValue}
                         value={minValue}
                         setValueOrText={setValueOrText}
-                        /*minValue={minValue}
-                        maxValue={maxValue}*/
                         style={minStyle}
-                        setDisableButtonSet={setDisableButtonSet}
-                        /*setTextValue={setTextValue}*/>start value:</UniversalInput>
+                        setDisableButtonSet={setDisableButtonSet}>start value:</UniversalInput>
                 </div>
                 <div className="buttonsWrapper">
                     <UniversalButton
@@ -122,8 +112,6 @@ const App = () => {
                          correctValue={correctValue}
                          maxValue={maxValue}
                          minValue={minValue}
-                    /*textValue={textValue}
-                    setTextValue={setTextValue}*/
                 />
                 <div className="buttonsWrapper">
                     <UniversalButton

@@ -1,28 +1,23 @@
 import React from 'react';
-/*import { TextValueType } from '../../App';*/
 import s from './Counter.module.css'
 
 type CounterPropsType = {
     valueOrText: boolean
-    /*textValue?: TextValueType*/
     value?: number
     maxValue: number
     minValue: number
     incorrectValue: "Incorrect value!"
     correctValue: "Enter values and press 'set'"
-    /* setTextValue: (text: TextValueType) => void*/
 }
 
 const Counter: React.FC<CounterPropsType> = (
     {
         valueOrText,
         value,
-        // textValue,
         maxValue,
         minValue,
         incorrectValue,
         correctValue,
-        /*setTextValue,*/
     }) => {
 
 
