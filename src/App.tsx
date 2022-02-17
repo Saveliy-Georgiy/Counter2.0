@@ -15,10 +15,9 @@ const App = () => {
     const [maxValueForEffect, setMaxValueForEffect] = useState<number>(7)
     const [valueOrText, setValueOrText] = useState<boolean>(true)
     const [disableButtonSet, setDisableButtonSet] = useState<boolean>(true)
-    /*const [textValue, setTextValue] = useState<TextValueType>()*/
 
-    const incorrectValue = "Incorrect value!" //стоило ли их делать глобальными?
-    const correctValue = "Enter values and press 'set'" //стоило ли их делать глобальными?
+    const incorrectValue = "Incorrect value!"
+    const correctValue = "Enter values and press 'set'"
 
     const changeCounter = () => value < maxValue && setValue(value + 1)
 
@@ -32,11 +31,15 @@ const App = () => {
 
     const resetCounter = () => setValue(minValue)
 
-    const changeMinValue = (e: ChangeEvent<HTMLInputElement>) => { //ругалось на типы, привел значение к намберу, потому что сет был типа намбера, а из инпута приходила строка, в которой лежало число
+    const changeMinValue = (e: ChangeEvent<HTMLInputElement>) => {
+        setValueOrText(false)
+        setDisableButtonSet(false)
         setMinValue(Number(e.currentTarget.value))
     }
 
     const changeMaxValue = (e: ChangeEvent<HTMLInputElement>) => {
+        setValueOrText(false)
+        setDisableButtonSet(false)
         setMaxValue(Number(e.currentTarget.value))
     }
 
@@ -55,7 +58,7 @@ const App = () => {
             setValue(newValue)
         }
 
-        if(minValue) {
+        if (minValue) {
             setMinValue(JSON.parse(minValue))
             setMinValueForEffect(JSON.parse(minValue))
         }
@@ -75,12 +78,12 @@ const App = () => {
         localStorage.setItem('maxValue', JSON.stringify(maxValueForEffect))
     }, [maxValueForEffect])
 
-    const minStyle = (minValue < 0 || minValue >= maxValue) ? "minRed": "correctValue"
-
+    const minStyle = (minValue < 0 || minValue >= maxValue) ? "minRed" : "correctValue"
     const maxStyle = minValue >= maxValue || maxValue <= 0 ? "maxRed" : "correctValue"
 
+
     /*const disableButtonSet = (!(minValue >= 0 && maxValue > minValue)) //но этот вариант не проверяет на вызов функции setCounter*/
-    const finalDisableButtonSet = !disableButtonSet ? (!(minValue >= 0 && maxValue > minValue)): true
+    const finalDisableButtonSet = !disableButtonSet ? (!(minValue >= 0 && maxValue > minValue)) : true
     //проверяет, если кнопка не задизейблена, то проверяет логику по числам, а если задизейблена, превращает первое выражение в false и возвращает true. Делал такое для того, чтобы не передавать значения макс и мин в инпуты, где уже потом та же самая проверка будет проводиться в функции, при изменение макс мин значений
     return (
         <div className="blockForCounter">
@@ -92,7 +95,7 @@ const App = () => {
                         setValueOrText={setValueOrText}
                         /*maxValue={maxValue}
                         minValue={minValue}*/
-                        maxStyle={maxStyle}
+                        style={maxStyle}
                         setDisableButtonSet={setDisableButtonSet}
                         /*setTextValue={setTextValue}*/>max value:</UniversalInput>
                     <UniversalInput
@@ -101,7 +104,7 @@ const App = () => {
                         setValueOrText={setValueOrText}
                         /*minValue={minValue}
                         maxValue={maxValue}*/
-                        minStyle={minStyle}
+                        style={minStyle}
                         setDisableButtonSet={setDisableButtonSet}
                         /*setTextValue={setTextValue}*/>start value:</UniversalInput>
                 </div>

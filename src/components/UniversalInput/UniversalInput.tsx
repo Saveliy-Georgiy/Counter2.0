@@ -8,8 +8,7 @@ type UniversalInputPropsType = {
     setValueOrText: (valueOrText: boolean) => void
     onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
     value: number
-    maxStyle?: string
-    minStyle?: string
+    style?: string
     setDisableButtonSet: (disable: boolean) => void
 /*    setTextValue: (text: TextValueType) => void*/
 }
@@ -21,22 +20,17 @@ const UniversalInput: React.FC<UniversalInputPropsType> = (
         setValueOrText,
         onChange,
         value,
-        maxStyle,
-        minStyle,
+        style,
         setDisableButtonSet,
         /*setTextValue,*/
         children,
     }) => {
 
     const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
-        /*(minValue < 0 || minValue === maxValue) ?  setTextValue("Incorrect value!") : setTextValue("Enter value and press 'set'")*/
-        //походу из-за асинхрона не срабатывает вовремя, буду искать другой метод
         onChange(e)
-        setValueOrText(false)
-        setDisableButtonSet(false)
     }
 
-     const finalInputClass = `${maxStyle} ${minStyle} ${s.input}`
+     const finalInputClass = `${style} ${s.input}` //стиль, который хотим добавить и базовый стиль
 
     return (
         <div className={s.valueWrapper}>
