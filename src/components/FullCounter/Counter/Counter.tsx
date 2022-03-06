@@ -6,8 +6,8 @@ type CounterPropsType = {
     value?: number
     maxValue: number
     minValue: number
-    incorrectValue: "Incorrect value!"
-    correctValue: "Enter values and press 'set'"
+    incorrectValue: string
+    correctValue: string
 }
 
 const Counter: React.FC<CounterPropsType> = (

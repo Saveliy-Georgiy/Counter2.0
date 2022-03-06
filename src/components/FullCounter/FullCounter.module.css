@@ -1,0 +1,55 @@
+.blockForCounter {
+    display: flex;
+    flex-direction: row;
+    height: 600px;
+    align-items: center;
+    justify-content: center;
+}
+
+.counterWrapper {
+    height: 250px;
+    width: 400px;
+    border: 4px solid darkblue;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 50px;
+}
+
+.buttonsWrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 350px;
+    border: 4px solid darkblue;
+    margin: 0 15px 15px 15px;
+    border-radius: 10px;
+}
+
+.valueWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 350px;
+    height: 200px;
+    border: 4px solid darkblue;
+    border-radius: 10px;
+    margin: 15px;
+    color: darkblue;
+    justify-content: center;
+    font-size: 24px;
+}
+
+.minRed {
+    border: 3px solid red;
+}
+
+.maxRed {
+    border: 3px solid red;
+}
+
+.correctValue{
+    border: 3px solid darkblue;
+}

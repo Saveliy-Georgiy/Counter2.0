@@ -2,11 +2,11 @@ import React, {ChangeEvent} from 'react';
 import s from './UniversalInput.module.css'
 
 type UniversalInputPropsType = {
-    setValueOrText: (valueOrText: boolean) => void
+    //setValueOrText: (valueOrText: boolean) => void
     onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
     value: number
     style?: string
-    setDisableButtonSet: (disable: boolean) => void
+    //setDisableButtonSet: (disable: boolean) => void
 }
 
 const UniversalInput: React.FC<UniversalInputPropsType> = (
