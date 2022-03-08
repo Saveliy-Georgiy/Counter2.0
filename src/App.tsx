@@ -1,9 +1,9 @@
 import React from 'react';
 import './App.css';
-import {FullCounter} from "./components/FullCounter/FullCounter";
+import {FullCounterContainer} from "./components/FullCounter/containers/FullCounterContainer";
 
 export const App = () => {
     return (
-        <FullCounter/>
+        <FullCounterContainer/>
     );
 }

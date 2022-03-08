@@ -49,4 +49,6 @@ export const counterReducer = (state = initialState, action: FullCounterActionsT
 export const selectCurrency = (store: AppStateType) => store.counter
 
 //1) как называть экшнКреэйторы и функции, которые вызывают их? ведь AC в кажом писать неправильно
+//2) в каком месте хранить контейнерную компоненту?
+//3) зачем использовать тру кэтч, если внутри кэтча все равно проверяем на null и возвращаем undefined, когда что-то не то
 

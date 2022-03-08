@@ -3,47 +3,42 @@ import s from './FullCounter.module.css'
 import UniversalInput from "./UniversalInput/UniversalInput";
 import UniversalButton from "./UniversalButton/UniversalButton";
 import Counter from "./Counter/Counter";
-import {useDispatch, useSelector} from "react-redux";
-import {selectCurrency} from "../../redux/counterReducer";
-import {Dispatch} from "redux";
-import {
-    changeMaxValueAC,
-    changeMinValueAC,
-    FullCounterActionsTypes,
-    increaseCounterAC,
-    resetCounterAC,
-    setCounterAC
-} from "../../redux/actions";
 
-export const FullCounter: React.FC = () => {
+type FullCounterPropsType = {
+    value: number
+    minValue: number
+    maxValue: number
+    valueOrText: boolean
+    incorrectValue: string
+    correctValue: string
+    increaseCounter: () => void
+    setCounter: () => void
+    resetCounter: () => void
+    changeMinValue: (e: ChangeEvent<HTMLInputElement>) => void
+    changeMaxValue: (e: ChangeEvent<HTMLInputElement>) => void
+    finalDisableButtonSet: boolean
+}
 
-    const {
+export const FullCounter: React.FC<FullCounterPropsType> = (
+    {
         value,
         minValue,
         maxValue,
         valueOrText,
-        disableButtonSet,
         incorrectValue,
         correctValue,
-    } = useSelector(selectCurrency)
-
-    const dispatch = useDispatch<Dispatch<FullCounterActionsTypes>>()
-
-    const increaseCounter = () => value < maxValue && dispatch(increaseCounterAC())
-    const setCounter = () => dispatch(setCounterAC())
-    const resetCounter = () => dispatch(resetCounterAC())
-    const changeMinValue = (e: ChangeEvent<HTMLInputElement>) => {
-        dispatch(changeMinValueAC(Number(e.currentTarget.value)))
+        increaseCounter,
+        setCounter,
+        resetCounter,
+        changeMinValue,
+        changeMaxValue,
+        finalDisableButtonSet,
     }
-    const changeMaxValue = (e: ChangeEvent<HTMLInputElement>) => {
-        dispatch(changeMaxValueAC(Number(e.currentTarget.value)))
-    }
+) => {
 
     const minStyle = (minValue < 0 || minValue >= maxValue) ? s.minRed : s.correctValue
     const maxStyle = minValue >= maxValue || maxValue <= 0 ? s.maxRed : s.correctValue
 
-    const finalDisableButtonSet = !disableButtonSet ? (!(minValue >= 0 && maxValue > minValue)) : true
-    //проверяет, если кнопка не задизейблена, то проверяет логику по числам, а если задизейблена, превращает первое выражение в false и возвращает true. Делал такое для того, чтобы не передавать значения макс и мин в инпуты, где уже потом та же самая проверка будет проводиться в функции, при изменение макс мин значений
     return (
         <div className={s.blockForCounter}>
             <div className={s.counterWrapper}>
