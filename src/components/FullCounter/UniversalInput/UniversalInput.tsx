@@ -3,8 +3,8 @@ import s from './UniversalInput.module.css'
 
 type UniversalInputPropsType = {
     //setValueOrText: (valueOrText: boolean) => void
-    onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
-    value: number
+    onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void
+    value?: number
     style?: string
     //setDisableButtonSet: (disable: boolean) => void
 }
@@ -18,7 +18,7 @@ const UniversalInput: React.FC<UniversalInputPropsType> = (
     }) => {
 
     const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
-        onChange(e)
+        onChange && onChange(e)
     }
 
     const finalInputClass = `${style} ${s.input}` //стиль, который хотим добавить и базовый стиль

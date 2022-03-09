@@ -2,7 +2,7 @@ import React from 'react';
 import s from './UniversalButton.module.css'
 
 type UniversalButtonPropsType = {
-    onClick: () => void
+    onClick?: () => void
     disable?: boolean
 }
 

@@ -13,9 +13,9 @@ const initialState = {
     correctValue: "Enter values and press 'set'",
 }
 
-export type CounterType = typeof initialState
+export type CounterStateType = typeof initialState
 
-export const counterReducer = (state = initialState, action: FullCounterActionsTypes): CounterType => {
+export const counterReducer = (state = initialState, action: FullCounterActionsTypes): CounterStateType => {
     switch (action.type) {
         case ACTIONS_TYPE.INCREASE_COUNTER:
             return {...state, value: state.value + 1}
@@ -46,9 +46,5 @@ export const counterReducer = (state = initialState, action: FullCounterActionsT
     }
 }
 
-export const selectCurrency = (store: AppStateType) => store.counter
-
-//1) как называть экшнКреэйторы и функции, которые вызывают их? ведь AC в кажом писать неправильно
-//2) в каком месте хранить контейнерную компоненту?
-//3) зачем использовать тру кэтч, если внутри кэтча все равно проверяем на null и возвращаем undefined, когда что-то не то
+export const selectCounter = (store: AppStateType) => store
 

@@ -3,38 +3,40 @@ import s from './FullCounter.module.css'
 import UniversalInput from "./UniversalInput/UniversalInput";
 import UniversalButton from "./UniversalButton/UniversalButton";
 import Counter from "./Counter/Counter";
+import {CounterStateType} from "../../redux/counterReducer";
 
 type FullCounterPropsType = {
-    value: number
-    minValue: number
-    maxValue: number
-    valueOrText: boolean
-    incorrectValue: string
-    correctValue: string
+    counterState: CounterStateType
     increaseCounter: () => void
     setCounter: () => void
     resetCounter: () => void
     changeMinValue: (e: ChangeEvent<HTMLInputElement>) => void
     changeMaxValue: (e: ChangeEvent<HTMLInputElement>) => void
+    disableIncAndReset: boolean
     finalDisableButtonSet: boolean
 }
 
 export const FullCounter: React.FC<FullCounterPropsType> = (
     {
+        counterState,
+        increaseCounter,
+        setCounter,
+        resetCounter,
+        changeMinValue,
+        changeMaxValue,
+        disableIncAndReset,
+        finalDisableButtonSet,
+    }
+) => {
+
+    const {
         value,
         minValue,
         maxValue,
         valueOrText,
         incorrectValue,
         correctValue,
-        increaseCounter,
-        setCounter,
-        resetCounter,
-        changeMinValue,
-        changeMaxValue,
-        finalDisableButtonSet,
-    }
-) => {
+    } = counterState
 
     const minStyle = (minValue < 0 || minValue >= maxValue) ? s.minRed : s.correctValue
     const maxStyle = minValue >= maxValue || maxValue <= 0 ? s.maxRed : s.correctValue
@@ -47,17 +49,22 @@ export const FullCounter: React.FC<FullCounterPropsType> = (
                         onChange={changeMaxValue}
                         value={maxValue}
                         style={maxStyle}
-                    >max value:</UniversalInput>
+                    >
+                        max value:
+                    </UniversalInput>
                     <UniversalInput
                         onChange={changeMinValue}
                         value={minValue}
                         style={minStyle}
-                    >start value:</UniversalInput>
+                    >
+                        start value:
+                    </UniversalInput>
                 </div>
                 <div className={s.buttonsWrapper}>
                     <UniversalButton
                         onClick={setCounter}
-                        disable={finalDisableButtonSet}>set
+                        disable={finalDisableButtonSet}>
+                        set
                     </UniversalButton>
                 </div>
             </div>
@@ -72,11 +79,13 @@ export const FullCounter: React.FC<FullCounterPropsType> = (
                 <div className={s.buttonsWrapper}>
                     <UniversalButton
                         onClick={increaseCounter}
-                        disable={value === maxValue || !valueOrText}>inc
+                        disable={disableIncAndReset}>
+                        inc
                     </UniversalButton>
                     <UniversalButton
                         onClick={resetCounter}
-                        disable={value === minValue || !valueOrText}>reset
+                        disable={disableIncAndReset}>
+                        reset
                     </UniversalButton>
                 </div>
             </div>

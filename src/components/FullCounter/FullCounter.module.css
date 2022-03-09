@@ -6,6 +6,8 @@
     justify-content: center;
 }
 
+
+
 .counterWrapper {
     height: 250px;
     width: 400px;
@@ -52,4 +54,23 @@
 
 .correctValue{
     border: 3px solid darkblue;
+}
+
+@media screen and (max-width: 930px) {
+    .blockForCounter  {
+        flex-direction: column;
+    }
+    .counterWrapper {
+        height: 200px;
+        width: 300px;
+    }
+    .buttonsWrapper {
+        width: 250px;
+        
+    }
+    .valueWrapper {
+        width: 150px;
+        height: 120px;
+        font-size: 16px;
+    }
 }

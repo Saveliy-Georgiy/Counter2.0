@@ -9,24 +9,16 @@ import {
     setCounterAC,
     FullCounterActionsTypes,
 } from "../../../redux/actions";
-import {selectCurrency} from "../../../redux/counterReducer";
+import {selectCounter} from "../../../redux/counterReducer";
 import {FullCounter} from "../FullCounter";
 
 export const FullCounterContainer: React.FC = () => {
 
-    const {
-        value,
-        minValue,
-        maxValue,
-        valueOrText,
-        disableButtonSet,
-        incorrectValue,
-        correctValue,
-    } = useSelector(selectCurrency)
+    const {counterState} = useSelector(selectCounter)
 
     const dispatch = useDispatch<Dispatch<FullCounterActionsTypes>>()
 
-    const increaseCounter = () => value < maxValue && dispatch(increaseCounterAC())
+    const increaseCounter = () => counterState.value < counterState.maxValue && dispatch(increaseCounterAC())
     const setCounter = () => dispatch(setCounterAC())
     const resetCounter = () => dispatch(resetCounterAC())
     const changeMinValue = (e: ChangeEvent<HTMLInputElement>) => {
@@ -36,23 +28,20 @@ export const FullCounterContainer: React.FC = () => {
         dispatch(changeMaxValueAC(Number(e.currentTarget.value)))
     }
 
-    const finalDisableButtonSet = !disableButtonSet ? (!(minValue >= 0 && maxValue > minValue)) : true
+    const disableIncAndReset = counterState.value === counterState.maxValue || !counterState.valueOrText
+    const finalDisableButtonSet = !counterState.disableButtonSet ? (!(counterState.minValue >= 0 && counterState.maxValue > counterState.minValue)) : true
     //проверяет, если кнопка не задизейблена, то проверяет логику по числам, а если задизейблена, превращает первое выражение в false и возвращает true. Делал такое для того, чтобы не передавать значения макс и мин в инпуты, где уже потом та же самая проверка будет проводиться в функции, при изменение макс мин значений
 
     return (
         <>
             <FullCounter
-                value={value}
-                minValue={minValue}
-                maxValue={maxValue}
-                valueOrText={valueOrText}
-                incorrectValue={incorrectValue}
-                correctValue={correctValue}
+                counterState={counterState}
                 increaseCounter={increaseCounter}
                 setCounter={setCounter}
                 resetCounter={resetCounter}
                 changeMinValue={changeMinValue}
                 changeMaxValue={changeMaxValue}
+                disableIncAndReset={disableIncAndReset}
                 finalDisableButtonSet={finalDisableButtonSet}
             />
         </>
