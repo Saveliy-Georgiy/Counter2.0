@@ -25,6 +25,7 @@
     font-size: 28px;
     font-weight: 600
 }
+
 @media screen and (max-width: 930px) {
     .counterWrapper {
         width: 250px;

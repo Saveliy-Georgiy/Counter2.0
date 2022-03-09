@@ -58,14 +58,17 @@
     .blockForCounter {
         flex-direction: column;
     }
+
     .counterWrapper {
         height: 240px;
         width: 300px;
         margin: 10px;
     }
+
     .buttonsWrapper {
         width: 250px;
     }
+
     .valueWrapper {
         width: 250px;
         font-size: 16px;
