@@ -24,7 +24,7 @@ const UniversalInput: React.FC<UniversalInputPropsType> = (
     const finalInputClass = `${style} ${s.input}` //стиль, который хотим добавить и базовый стиль
 
     return (
-        <div className={s.valueWrapper}>
+        <div className={s.inputWrapper}>
             {children}
             <input type="number" onChange={onChangeHandler} value={value} className={finalInputClass}/>
         </div>

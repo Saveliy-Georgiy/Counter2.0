@@ -6,3 +6,15 @@
 .correctValues {
     border: 3px solid darkblue;
 }
+
+.inputWrapper {
+
+}
+
+@media screen and (max-width: 930px) {
+    .inputWrapper {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+}
