@@ -28,7 +28,8 @@ export const FullCounterContainer: React.FC = () => {
         dispatch(changeMaxValueAC(Number(e.currentTarget.value)))
     }
 
-    const disableIncAndReset = counterState.value === counterState.maxValue || !counterState.valueOrText
+    const disableButtonInc = counterState.value === counterState.maxValue || !counterState.valueOrText
+    const disableButtonReset = counterState.value === counterState.minValue || !counterState.valueOrText
     const finalDisableButtonSet = !counterState.disableButtonSet ? (!(counterState.minValue >= 0 && counterState.maxValue > counterState.minValue)) : true
     //проверяет, если кнопка не задизейблена, то проверяет логику по числам, а если задизейблена, превращает первое выражение в false и возвращает true. Делал такое для того, чтобы не передавать значения макс и мин в инпуты, где уже потом та же самая проверка будет проводиться в функции, при изменение макс мин значений
 
@@ -41,7 +42,8 @@ export const FullCounterContainer: React.FC = () => {
                 resetCounter={resetCounter}
                 changeMinValue={changeMinValue}
                 changeMaxValue={changeMaxValue}
-                disableIncAndReset={disableIncAndReset}
+                disableButtonInc={disableButtonInc}
+                disableButtonReset={disableButtonReset}
                 finalDisableButtonSet={finalDisableButtonSet}
             />
         </>

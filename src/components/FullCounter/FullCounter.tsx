@@ -12,7 +12,8 @@ type FullCounterPropsType = {
     resetCounter: () => void
     changeMinValue: (e: ChangeEvent<HTMLInputElement>) => void
     changeMaxValue: (e: ChangeEvent<HTMLInputElement>) => void
-    disableIncAndReset: boolean
+    disableButtonReset: boolean
+    disableButtonInc: boolean
     finalDisableButtonSet: boolean
 }
 
@@ -24,7 +25,8 @@ export const FullCounter: React.FC<FullCounterPropsType> = (
         resetCounter,
         changeMinValue,
         changeMaxValue,
-        disableIncAndReset,
+        disableButtonReset,
+        disableButtonInc,
         finalDisableButtonSet,
     }
 ) => {
@@ -48,15 +50,13 @@ export const FullCounter: React.FC<FullCounterPropsType> = (
                     <UniversalInput
                         onChange={changeMaxValue}
                         value={maxValue}
-                        style={maxStyle}
-                    >
+                        style={maxStyle}>
                         max value:
                     </UniversalInput>
                     <UniversalInput
                         onChange={changeMinValue}
                         value={minValue}
-                        style={minStyle}
-                    >
+                        style={minStyle}>
                         start value:
                     </UniversalInput>
                 </div>
@@ -74,17 +74,16 @@ export const FullCounter: React.FC<FullCounterPropsType> = (
                          incorrectValue={incorrectValue}
                          correctValue={correctValue}
                          maxValue={maxValue}
-                         minValue={minValue}
-                />
+                         minValue={minValue}/>
                 <div className={s.buttonsWrapper}>
                     <UniversalButton
                         onClick={increaseCounter}
-                        disable={disableIncAndReset}>
+                        disable={disableButtonInc}>
                         inc
                     </UniversalButton>
                     <UniversalButton
                         onClick={resetCounter}
-                        disable={disableIncAndReset}>
+                        disable={disableButtonReset}>
                         reset
                     </UniversalButton>
                 </div>
